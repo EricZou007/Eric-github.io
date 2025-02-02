@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Education Experience - Eric Zou</title>
+    <style>
+        /* Global Styling */
+        body {
+            font-family: system-ui, -apple-system, sans-serif;
+            line-height: 1.8;
+            color: #333;
+            padding: 2rem;
+            max-width: 900px;
+            margin: 0 auto;
+            background-color: #f5f7fa;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 1.5rem;
+            font-size: 2rem;
+            color: #222;
+        }
+
+        h2 {
+            text-align: left;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+            color: #007BFF;
+            border-bottom: 2px solid #007BFF;
+            padding-bottom: 0.5rem;
+        }
+
+        section {
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .edu-details, .courses-list, .skills-list {
+            text-align: left;
+        }
+
+        .edu-details p, .courses-list p, .skills-list p {
+            margin: 0.5rem 0;
+        }
+
+        .courses-list, .skills-list {
+            margin-top: 1rem;
+        }
+
+        ul {
+            padding-left: 1.5rem;
+            list-style: disc;
+        }
+
+        /* Skills Section */
+        .skills-list ul {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .skills-list li {
+            background: #007BFF;
+            color: white;
+            padding: 6px 12px;
+            border-radius: 5px;
+            font-size: 0.95rem;
+            font-weight: 500;
+        }
+
+        /* Back to Home Button */
+        .back-home {
+            display: block;
+            text-align: center;
+            text-decoration: none;
+            color: white;
+            font-weight: 600;
+            margin-top: 2rem;
+            padding: 0.7rem 1.5rem;
+            background-color: #007BFF;
+            border-radius: 5px;
+            width: fit-content;
+            margin-left: auto;
+            margin-right: auto;
+            transition: background 0.3s ease-in-out;
+        }
+
+        .back-home:hover {
+            background-color: #0056b3;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            body {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>Education Experience</h1>
+    
+    <section>
+        <h2>Emory University</h2>
+        <div class="edu-details">
+            <p><strong>Degree:</strong> Bachelor’s in Applied Math and Statistics</p>
+            <p><strong>Honors:</strong> Pursuing Highest Honors Graduation</p>
+            <p><strong>Current GPA:</strong> 3.96 (Honor List)</p>
+        </div>
+    </section>
+    
+    <section>
+        <h2>Courses Taken</h2>
+        <div class="courses-list">
+            <ul>
+                <li>Real Analysis</li>
+                <li>Functional Analysis</li>
+                <li>Probability and Statistics Theory</li>
+                <li>Numerical Analysis</li>
+                <li>Numerical Linear Algebra</li>
+                <li>Numerical ODE</li>
+                <li>Machine Learning, Deep Learning, Reinforcement Learning</li>
+                <li>Optimization</li>
+                <li>Partial Differential Equations (PDE)</li>
+                <li>Mathematical Modeling</li>
+            </ul>
+        </div>
+    </section>
+
+    <section>
+        <h2>Skills</h2>
+        <div class="skills-list">
+            <ul>
+                <li>Python</li>
+                <li>PyTorch</li>
+                <li>Matlab</li>
+                <li>R</li>
+                <li>SQL</li>
+                <li>Shell</li>
+                <li>HTML</li>
+            </ul>
+        </div>
+    </section>
+
+    <a href="./index.html" class="back-home">Back to Home</a>
+</body>
+</html>
+

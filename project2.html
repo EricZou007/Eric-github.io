@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project 2 - SVD Lora Adaptater</title>
+
+    <!-- MathJax for rendering LaTeX math -->
+    <script type="text/javascript" async 
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
+    </script>
+
+    <style>
+        body {
+            font-family: system-ui, -apple-system, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            padding: 2rem;
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: #f9f9f9;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 1rem;
+            color: #333;
+        }
+
+        p {
+            margin: 1rem 0;
+        }
+
+        figure {
+            text-align: center;
+            margin-top: 1rem;
+        }
+
+        figcaption {
+            font-size: 14px;
+            color: #555;
+            margin-top: 0.5rem;
+        }
+
+        a {
+            text-decoration: none;
+            color: #fff;
+            font-weight: 500;
+            display: inline-block;
+            margin-top: 1rem;
+            padding: 0.5rem 1rem;
+            background-color: #333;
+            border-radius: 5px;
+            text-align: center;
+        }
+
+        a:hover {
+            background-color: #555;
+        }
+    </style>
+</head>
+<body>
+    <h1>Project 2 - SVD Lora Adapter</h1>
+
+    <p>This project was conducted as part of my role as a Research Assistant under Dr. Jie Chen at the MIT AI Watson Lab. My focus was on the efficient implementation of **Low-Rank Approximation (LoRA)** techniques using adapter methods.</p>
+
+    <p>My responsibilities included developing and optimizing algorithms to reduce computational complexity while maintaining accuracy, enabling faster data processing and improving machine learning model efficiency.</p>
+
+    <h2>1. Original LoRA Method</h2>
+    <p>The original LoRA method reduces the total number of trainable parameters by decomposing the weight matrix into low-rank matrices. This is represented as:</p>
+
+    <p>
+        \[
+        W = A \times B
+        \]
+    </p>
+
+    <p>where \( A \) and \( B \) are low-rank matrices. This transformation allows models to adapt to new tasks with minimal modifications to the original architecture, significantly reducing the number of parameters that need fine-tuning. As a result, LoRA enables efficient transfer learning and task adaptation.</p>
+
+    <figure>
+        <img src="images/Lora.png" alt="LoRA Architecture" style="width: 100%; height: auto;">
+        <figcaption>
+            Figure 1: LoRA Architecture. Adapted from *Edward J., et al.*
+        </figcaption>
+    </figure>
+
+    <p>By applying LoRA adapters to models, we can **reduce the number of trainable parameters** to as little as **1/1000 of the original model** (e.g., from **10 billion to 3 million** trainable parameters) while simultaneously **improving model performance**.</p>
+
+    <h2>2. Our Method: SVD-LoRA Decomposition</h2>
+    <p>In our approach, we propose a novel decomposition of the weight matrix \( W \) into three components:</p>
+
+    <p>
+        \[
+        W = P \times S \times \Pi
+        \]
+    </p>
+
+    <p>where:</p>
+    <ul>
+        <li>\( P \in \mathbb{R}^{d \times r} \) (low-rank projection matrix)</li>
+        <li>\( S \in \mathbb{R}^{r \times r} \) (small core matrix)</li>
+        <li>\( \Pi \in \mathbb{R}^{r \times d} \) (low-rank reconstruction matrix)</li>
+    </ul>
+
+    <p>Here is the architecture of our method:</p>
+
+    <figure>
+        <img src="images/SVD_lora.png" alt="SVD_LoRA Architecture" style="width: 100%; height: auto;">
+        <figcaption>
+            Figure 2: SVD-LoRA Architecture.
+        </figcaption>
+    </figure>
+
+    <h2>3. Underlying Principles</h2>
+    <p>Our idea is inspired by **Kronecker matrix product** and **multigrid methods**. The process involves:</p>
+    <ol>
+        <li>Performing **balanced clustering** on the original weight matrix \( W \).</li>
+        <li>Assigning elements of \( W \) to corresponding clusters.</li>
+        <li>Initializing:
+            \[
+            P = \mathcal{N}(0,1), \quad \Pi = \mathcal{N}(0, 1/k)
+            \]
+            where \( k \) is the number of elements in each cluster, and
+            \[
+            S = 0.
+            \]
+        </li>
+    </ol>
+
+    <h2>4. Training Strategy</h2>
+    <p>Unlike traditional LoRA, **we only allow \( S \) to be trainable while freezing \( P \) and \( \Pi \). This significantly reduces the number of trainable parameters while maintaining model performance.</p>
+
+    <p>For example, our method further reduces the trainable parameters from **3 million to 30 thousand, making it even more efficient for transfer learning** and **model adaptation tasks.</p>
+
+    <h2>Reference</h2>
+    <p>Hu, Edward J., et al. *"LoRA: Low-Rank Adaptation of Large Language Models."* 2021, arXiv, <a href="https://arxiv.org/abs/2106.09685" target="_blank">https://arxiv.org/abs/2106.09685</a>.</p>
+
+    <a href="projects.html">Back to Projects</a>
+</body>
+</html>

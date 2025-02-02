@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eric Zou's Personal Website</title>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+
+    <!-- Smooth Scrolling CSS -->
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: system-ui, -apple-system, sans-serif;
+            scroll-behavior: smooth; /* Enables smooth scrolling */
+        }
+
+        body {
+            line-height: 1.6;
+            color: #333;
+        }
+
+        .header {
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), 
+                        url('https://www.coopercarry.com/wp-content/uploads/2018/06/Emory-Univ-Math-_-Science-1-1024x512.jpg');
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+            padding: 2rem;
+        }
+
+        .header h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .header p {
+            font-size: 1.5rem;
+            max-width: 600px;
+        }
+
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background-color: rgba(255,255,255,0.9);
+            padding: 1rem;
+            z-index: 100;
+        }
+
+        nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s ease-in-out;
+        }
+
+        nav a:hover {
+            color: #007BFF;
+        }
+
+        section {
+            padding: 5rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .about {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .about img {
+            width: 100%;
+            border-radius: 10px;
+        }
+
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 0.8rem;
+            margin-bottom: 1rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        .contact-form button {
+            background-color: #333;
+            color: white;
+            padding: 0.8rem 2rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 2rem;
+        }
+
+        .social-links a {
+            color: #333;
+            font-size: 1.5rem;
+            transition: color 0.3s ease-in-out;
+        }
+
+        .social-links a:hover {
+            color: #007BFF;
+        }
+
+        @media (max-width: 768px) {
+            .about {
+                grid-template-columns: 1fr;
+            }
+
+            .header h1 {
+                font-size: 2rem;
+            }
+
+            .header p {
+                font-size: 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="projects.html">Projects</a></li>
+            <li><a href="education.html">Education Experience</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <header id="home" class="header">
+        <h1>Eric Zou</h1>
+        <p>Emory University | Math Researcher</p>
+    </header>
+
+    <section id="about" class="about">
+        <img src="images/my.png" alt="Profile Picture">
+        <div>
+            <h2>About Me</h2>
+            <p>Hi there! I am currently a junior at Emory University majoring in Applied Math and Statistics. My research area is Multimodal Learning in Ptychography and Fluorescence Reconstruction. 
+                I also work as a research assistant in MIT AI Watson Lab, focusing on Low Rank Decomposition. I am looking forward to diving further into the field of artificial intelligence with professionals.</p>
+        </div>
+    </section>
+
+    <section id="contact">
+        <h2>Get in Touch</h2>
+        <form class="contact-form" action="mailto:eric.zou@emory.edu" method="post" enctype="text/plain">
+            <input type="text" name="name" placeholder="Name" required>
+            <input type="email" name="email" placeholder="Email" required>
+            <textarea name="message" placeholder="Your Message" rows="5" required></textarea>
+            <button type="submit">Send Message</button>
+        </form>
+        <div class="social-links">
+            <a href="https://github.com/EricZou007" target="_blank"><i class="fab fa-github"></i></a>
+            <a href="https://linkedin.com/in/chengru-zou-110b8a292" target="_blank"><i class="fab fa-linkedin"></i></a>
+        </div>
+    </section>
+
+    <!-- Smooth Scroll JavaScript -->
+    <script>
+        document.querySelectorAll('nav a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener("click", function(event) {
+                event.preventDefault();
+                const targetID = this.getAttribute("href").substring(1);
+                const targetSection = document.getElementById(targetID);
+                window.scrollTo({
+                    top: targetSection.offsetTop - 50, // Adjust offset if needed
+                    behavior: "smooth"
+                });
+            });
+        });
+    </script>
+
+</body>
+</html>
+
+
+
+

@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project 1 - Xi's Lab Assistant Researcher</title>
+
+    <!-- MathJax for Rendering Math -->
+    <script type="text/javascript" async 
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
+    </script>
+
+    <style>
+        body {
+            font-family: system-ui, -apple-system, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            padding: 2rem;
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: #f9f9f9;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 1rem;
+            color: #333;
+        }
+
+        p {
+            margin: 1rem 0;
+        }
+
+        .equation {
+            background: #f4f4f4;
+            padding: 10px;
+            border-radius: 5px;
+            font-family: monospace;
+            overflow-x: auto;
+        }
+
+        a {
+            text-decoration: none;
+            color: #fff;
+            font-weight: 500;
+            display: inline-block;
+            margin-top: 1rem;
+            padding: 0.5rem 1rem;
+            background-color: #333;
+            border-radius: 5px;
+            text-align: center;
+        }
+
+        a:hover {
+            background-color: #555;
+        }
+    </style>
+</head>
+<body>
+    <h1>Project 1 - Joint Analysis of X-ray Ptychography and X-ray Fluorescence Reconstruction</h1>
+
+    <figure style="text-align: center; margin-top: 1rem;">
+        <img src="images/reconstruction.png" alt="Project 1" style="width: 100%; height: auto;">
+        <figcaption style="font-size: 14px; color: #555; margin-top: 0.5rem;">
+            Figure 1: Reconstruction results from joint ptychography and fluorescence framework.  
+            <br>
+            Source: Adapted from <i>D. J. Vine et al., "Simultaneous X-ray fluorescence and ptychographic microscopy of Cyclotella meneghiniana," 2012.</i>
+        </figcaption>
+    </figure>
+    
+
+    <div class="content">
+        <h2>Ptychographic Reconstruction Part</h2>
+        <p>In the traditional way, we use separate methods for ptychographic and fluorescence reconstruction. 
+            We consider a ptychography experiment where the observed data \( d_i \) is modeled as:</p>
+            
+        <p>
+            \[
+            d_i = |\mathcal{F}(\mathbf{P}_i \mathbf{z})|^2 + \epsilon_i
+            \]
+        </p>
+        <p>where:</p>
+        <ul>
+            <li>\(\mathcal{F}\): 2D discrete Fourier transform operator</li>
+            <li>\(\mathbf{P}_i\): Probe matrix</li>
+            <li>\(z_i\): the object itself which can be written as \(z = x + y_i\)</li>
+        </ul>
+
+        <h2>Reconstruction Problem</h2>
+        <p>The reconstruction loss function is formulated as the following:</p>
+        <p>
+            \[
+            \min_{\mathbf{P},\mathbf{z}} \Phi(\mathbf{P},\mathbf{z}) = \frac{1}{2} \sum_{j=1}^{N} \left\| \left|  \mathcal{F}(\mathbf{P}_j \mathbf{z})\right| - \sqrt{d_j} \right\|_2^2
+            \]
+        </p>
+
+        <h2> X-ray Fluorescence Reconstruction</h2>
+        <p> X-ray fluorescence reconstruct the real part of the image \(x\) using a deconvolution method:</p>
+        <p>
+            \[
+            \min_{\mathbf{w},\mathbf{P}} \sum_{e=1}^{N_e} \left\| |\mathbf{P}|^2 \ast \mathbf{w}_e - D_e \right\|_2^2
+            \]
+        </p>
+        <p>where \( \mathbf{w} \) represents elemental concentration maps.
+            \(D_e\) corresponds to the experimental flourescence map of element \(e\)</p>
+        
+
+        <h2>Separate Optimization Framework</h2>
+        <p>Separate optimization of ptychographic and fluorescence reconstruction may lead to the results:</p>
+        <p>
+            \[
+            \min_{\mathbf{P},\mathbf{z}} \Phi(\mathbf{P},\mathbf{z}) + \min_{\mathbf{w},\mathbf{P}} \sum_{e=1}^{N_e} \left\| |\mathbf{P}|^2 \ast \mathbf{w}_e - D_e \right\|_2^2
+            \]
+        </p>
+
+        <p>where \( \alpha \) is a scaling parameter balancing between the two objectives.</p>
+
+        <h2>Joint Optimization Framework</h2>
+        <p>We propose a simultaneous optimization approach:</p>
+        <p>
+            \[
+            \min_{\mathbf{w},\mathbf{P},\mathbf{z}} \sum_{e=1}^{N_e} \left\| |\mathbf{P}|^2 \ast \mathbf{w}_e - D_e \right\|_2^2 + 
+            \alpha \sum_{j=1}^{N} \left\| \left|  \mathcal{F}(\mathbf{P}_j (\sum_e \mathbf{w}_e + i \beta))\right| - \sqrt{d_j} \right\|_2^2
+            \]
+        </p>
+        <p> By using joint method, the loss function is consistently less than the original loss function from the separate method</p>
+        
+
+        <h2>Absorption Coefficient Connection</h2>
+        <p>The absorption coefficient relates to elemental concentrations via:</p>
+        <p>
+            \[
+            \mathbf{z} = \delta + i \beta, \quad \delta = \sum_e \mathbf{w}_e \mu_e.
+            \]
+        </p>
+
+        <h2>Conclusion</h2>
+        <p>This joint framework aims to enhance both ptychographic and fluorescence data processing, leveraging their complementarity for improved reconstruction.</p>
+
+        <h2>Reference</h2>
+        <p>[1] Deng, J., Vine, D.J., Chen, S. et al. X-ray ptychographic and fluorescence microscopy of frozen-hydrated cells using continuous scanning. Sci Rep 7, 445 (2017). https://doi.org/10.1038/s41598-017-00569-y </p>
+    </div>
+
+
+
+    <a href="projects.html">Back to Projects</a>
+</body>
+</html>
+
