@@ -3,37 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Project 1 - AI.X ResearchS</title>
+    <title>Project 3 - AI.X Research on Graphical Database</title>
     <style>
         body {
             font-family: system-ui, -apple-system, sans-serif;
-            line-height: 1.6;
+            line-height: 1.8;
             color: #333;
             padding: 2rem;
-            max-width: 800px;
+            max-width: 900px;
             margin: 0 auto;
             background-color: #f9f9f9;
         }
 
         h1 {
             text-align: center;
-            margin-bottom: 1rem;
-            color: #333;
+            margin-bottom: 1.5rem;
+            color: #222;
+            font-size: 26px;
         }
 
         p {
+            text-align: justify;
             margin: 1rem 0;
+            font-size: 16px;
         }
 
         a {
             text-decoration: none;
-            color: #333;
+            color: white;
             font-weight: 500;
             display: inline-block;
-            margin-top: 1rem;
-            padding: 0.5rem 1rem;
+            margin-top: 1.5rem;
+            padding: 0.6rem 1.2rem;
             background-color: #333;
-            color: white;
             border-radius: 5px;
             text-align: center;
         }
@@ -41,13 +43,92 @@
         a:hover {
             background-color: #555;
         }
+
+        figure {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            margin-top: 1.5rem;
+        }
+
+        img {
+            width: 80%;
+            max-width: 1000px;
+            height: auto;
+            border-radius: 5px;
+            box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        figcaption {
+            font-size: 14px;
+            color: #555;
+            margin-top: 0.5rem;
+        }
     </style>
 </head>
 <body>
-    <h1>Project 3 - AI.X Research on Graphical Database</h1>
-    <p>This project involves working as a research assistant in Xi's Lab, focusing on [specific research area or activities you participated in].</p>
-    <p>Details about your tasks, findings, and contributions can go here to provide readers with more insight.</p>
 
-    <a href="projects.html">Back to Projects</a>
+    <h1>Project 3 - AI.X Research on Graphical Database</h1>
+
+    <figure style="display: flex; justify-content: center; align-items: center; flex-direction: column; margin-top: 1rem;">
+        <img src="images/poster_page_1.png" alt="Project 1" style="width: 120%; max-width: 1000px; height: auto;">
+        <figcaption style="font-size: 14px; color: #555; margin-top: 0.5rem;">
+            Figure 1: Poster  
+        </figcaption>
+    </figure>
+
+    <p>
+        This research explores the integration of <strong>graphical databases</strong> and <strong>Retrieval-Augmented Generation (RAG)</strong> in enhancing the query accuracy of 
+        <strong>Large Language Models (LLMs)</strong> for academic advising. Conducted under the guidance of <strong>Dr. Wen Gu</strong>, the study focuses on leveraging 
+        <strong>graph-based knowledge representation</strong> to optimize course selection and academic decision-making processes for <strong>Emory University</strong> students.
+    </p>
+
+    <p>
+        The research employs <strong>Vector RAG</strong> and <strong>Graph RAG</strong> techniques to enhance query retrieval. <strong>Vector RAG</strong> converts textual queries into 
+        <strong>vector embeddings</strong> for <strong>semantic similarity searches</strong>, while <strong>Graph RAG</strong> structures academic relationships using a <strong>knowledge graph (KG)</strong>. 
+        In a <strong>KG</strong>, <strong>nodes</strong> represent <strong>entities</strong> such as <strong>courses, prerequisites, and academic programs</strong>, while <strong>edges</strong> define their relationships. 
+        This structured approach facilitates a more <strong>comprehensive</strong> and <strong>contextually aware</strong> retrieval system, ensuring <strong>accurate and efficient responses</strong> 
+        to student inquiries.
+    </p>
+
+    <figure>
+        <img src="images/neo4j.png" alt="Graphical Database in Neo4j" style="width: 70%">
+        <figcaption><strong>Figure 2:</strong> Representation of Knowledge Graph in Neo4j</figcaption>
+    </figure>
+    
+    <p>
+        The project integrates <strong>both a vector database and a knowledge graph database</strong> to enhance response generation. <strong>LangChain</strong> is employed 
+        to interface the databases with <strong>LLMs</strong>, augmenting retrieval capabilities. To extract relevant information from the <strong>knowledge graph</strong>, the system 
+        utilizes two key methods: 
+        <br><br>
+        (1) <strong>Node Identification</strong>: Identifies key nodes within the graph and retrieves all immediately connected nodes relevant to the query.  
+        (2) <strong>Cypher Query Generation</strong>: Translates <strong>natural language queries</strong> into <strong>Cypher queries</strong>, the query language used in <strong>Neo4j</strong>, to extract <strong>structured 
+        academic data</strong>.
+    </p>
+
+    <figure>
+        <img src="images/neo4j_work.png" alt="Graphical Database Query Mechanism" style="width: 70%">
+        <figcaption><strong>Figure 3:</strong> Query Processing in Neo4j Knowledge Graph</figcaption>
+    </figure>
+
+    <p>
+        The comparative analysis demonstrates that the <strong>RAG system significantly outperforms conventional LLM-based retrieval models</strong>. While <strong>traditional 
+        LLMs</strong> often generate <strong>fragmented, inconsistent, or misleading responses</strong>, the <strong>graph-enhanced retrieval system</strong> ensures <strong>precise, structured, and 
+        contextually relevant outputs</strong>. This methodology effectively mitigates <strong>hallucinations</strong> in <strong>LLM-generated content</strong> by anchoring responses in a <strong>verified 
+        knowledge base</strong>.
+    </p>
+
+    <p>
+        <strong>Future research</strong> will explore <strong>further automation</strong> of <strong>knowledge graph construction</strong> and <strong>scalability</strong> for broader <strong>academic applications</strong>. The study 
+        underscores the <strong>potential of RAG-integrated LLMs</strong> in transforming <strong>AI-driven academic advising</strong> and <strong>structured information retrieval systems</strong>.
+    </p>
+
+    <div style="text-align: center;">
+        <a href="projects.html">Back to Projects</a>
+    </div>
+
 </body>
 </html>
+
+
