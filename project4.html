@@ -3,50 +3,238 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Project 4 - MCM Comppetition on Constant Wear On Stair</title>
+    <title>Project 4 - MCM Competition on Constant Wear on Stairs</title>
+    <script type="text/javascript" async src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js"></script>
     <style>
         body {
-            font-family: system-ui, -apple-system, sans-serif;
-            line-height: 1.6;
+            font-family: 'Arial', sans-serif;
+            line-height: 1.8;
             color: #333;
             padding: 2rem;
+            max-width: 900px;
+            margin: auto;
+            background-color: #f4f4f4;
+        }
+        h1, h2, h3 {
+            color: #222;
+            text-align: center;
+        }
+        p, li {
+            font-size: 1.1rem;
+        }
+        figure {
+            text-align: center;
+        }
+        img {
+            width: 100%;
             max-width: 800px;
-            margin: 0 auto;
-            background-color: #f9f9f9;
+            border-radius: 10px;
         }
-
-        h1 {
-            text-align: center;
-            margin-bottom: 1rem;
-            color: #333;
+        figcaption {
+            font-size: 0.9rem;
+            color: #555;
+            margin-top: 5px;
         }
-
-        p {
-            margin: 1rem 0;
-        }
-
         a {
-            text-decoration: none;
-            color: #333;
-            font-weight: 500;
-            display: inline-block;
-            margin-top: 1rem;
-            padding: 0.5rem 1rem;
-            background-color: #333;
-            color: white;
-            border-radius: 5px;
+            display: block;
             text-align: center;
+            margin-top: 2rem;
+            padding: 10px 15px;
+            font-size: 1rem;
+            color: white;
+            background: #333;
+            text-decoration: none;
+            border-radius: 5px;
+            width: fit-content;
+            margin-left: auto;
+            margin-right: auto;
         }
-
         a:hover {
-            background-color: #555;
+            background: #555;
         }
     </style>
 </head>
 <body>
-    <h1>Project 4 - MCM Competiton</Canvas></h1>
-    <p>This project involves working as a research assistant in Xi's Lab, focusing on [specific research area or activities you participated in].</p>
-    <p>Details about your tasks, findings, and contributions can go here to provide readers with more insight.</p>
+    <h1>Project 4 - MCM Competition</h1>
+    
+    <h2>1. Research Problem</h2>
+    <figure>
+        <img src="images/gw.png" alt="Research Problem">
+        <figcaption>Figure 1: The problem of the MCM competition</figcaption>
+    </figure>
+    <p>We analyze worn stairs in historical structures to extract information about their age, usage patterns, and renovations. Key questions we explore include:</p>
+    <ul>
+        <li>How often were the stairs used?</li>
+        <li>What was the direction of travel (up or down)?</li>
+        <li>What were the movement patterns (single-file or side-by-side)?</li>
+        <li>Is the wear consistent with historical records?</li>
+        <li>Can the age of the stairs be estimated?</li>
+        <li>What renovations have been made?</li>
+        <li>What materials were used in the stair construction?</li>
+        <li>What were the typical daily usage patterns?</li>
+    </ul>
+    
+    <h2>2. HEW Model Development</h2>
+    <h3>2.1. Assumptions</h3>
+    <ul>
+        <li>Wear is caused only by natural factors and human movement.</li>
+        <li>The stairs have a cuboid shape with dimensions \( L_x, L_y, L_z \).</li>
+        <li>The stairs are made of solid, uniform material.</li>
+        <li>The structure is shear-rigid, preventing internal rotational deflection.</li>
+        <li>People generally step with one foot per stair when ascending or descending.</li>
+    </ul>
+    
+    <h3>2.2. Static Single-Foot Pressure (SSFP Model)</h3>
+    <p>Each stair step is used by a single foot at a time, exerting vertical force:</p>
+    <p>\[ F_w = mg = 62 \times 9.81 = 608.22 \text{ N} \]</p>
+    <p>Contact area (including shoes): \[ 0.105 \times l_c \text{ m}^2 \]</p>
+    <p>Pressure applied on the stair:</p>
+    <p>\[ P(l_c) = \frac{608.22}{0.105 \times l_c} \text{ N/m}^2 \]</p>
+    
+    <figure>
+        <img src="images/walk.png" alt="Foot placement on stair">
+        <figcaption>Figure 2: Foot placement on stair</figcaption>
+    </figure>
+    
+    <h3>2.3. Foot Placement Distribution – Bimodal Beta Model</h3>
+    <p>Stepping behavior follows a Brownian motion-inspired probability distribution:</p>
+    <p>\[ B_1 \sim \text{Beta}(\alpha=2, \beta=5), \quad B_2 \sim \text{Beta}(\alpha=5, \beta=2) \]</p>
+    
+    <figure>
+        <img src="images/beta_demo.png" alt="Bimodal distribution of steps">
+        <figcaption>Figure 3: Bimodal distribution of steps</figcaption>
+    </figure>
+    
+
+    <h2>3. Stair Structural Deflection – Hybrid Euler-Bernoulli Winkler (HEW) Model</h2>
+
+    <p>The deflection function follows the Euler–Bernoulli Beam Theory:</p>
+    <p>\[ \frac{d^2}{d y^2}\left[E I \frac{d^2 w(y)}{d y^2}\right]=q_0 \]</p>
+
+    <p> for \(E\) represent the Young's modulus \(I\) refers to the second moment of area about the neutral axis parallel to the width,
+        \(w(y)\) is the deflection of the beam in the \(z\) direction.  </p>
+
+    <figure>
+        <img src="images/EB.png" alt="Bimodal distribution of steps">
+        <figcaption>Figure 4: Euler Bernoulli Method</figcaption>
+    </figure>
+    
+    <p> By our assumption, \(l_y\) is short enough to step only once on the tread. The original point-load Eu-
+        ler Bernoulli beam equation is an over-simplification if combined with our SSFP model, because
+        the length of the foot is usually significant compared to the length of the tread. If we apply the
+        standard approach using a uniform load partially distributed beam method, the solution, as we
+        verified, also does not blend with the nature of our SSFP Model well since the beam only deflects
+        in a fully smooth way. </p>
+    
+    <h3>3.1 Hybrid Euler-Bernoulli Winkler (HEW) Model</h3>
+    <p>We eparate the 1D beam intotwo regions and construct piecewise functions accordingly:</p>
+    <ul>
+        <li><strong>No-load Interval \([0, a]\)</strong>: Euler–Bernoulli beam theory governs the shape.</li>
+        <li><strong>Loaded Interval \([a, L_y]\)</strong>: Uniformly distributed load, reinforced by a Winkler foundation:</li>
+    </ul>
+    <p>\[ q(x) = k \cdot w(x) \]</p>
+    <p>where \( k = \frac{E}{t} \) represents spring stiffness.</p>
+
+    <figure>
+        <img src="images/hew.png" alt="Bimodal distribution of steps">
+        <figcaption>Figure 5: HEW method</figcaption>
+    </figure>
+
+    <p> We believe this is an excellent choice because Winkler’s model assumes no shear interaction or
+        displacement coupling between adjacent points. When the deformation of the tread is extremely
+        small (which is the scenario for our SSFP model), the interaction between adjacent points be-
+        comes small as well. It is reasonable to approximate, that when under tiny deformation, material
+        non-linearities like plastic deformation, and rupture, are negligible</p>
+    
+    <p> The formula of HEW formulate as below: </p>
+    
+    <h3>Piecewise Beam-Winkler ODE Formulation</h3>
+    
+    <h4>1. No-load Interval \([0, a]\)</h4>
+    <p><strong>ODE:</strong></p>
+    <p>\[ EI w_1^{(4)}(y) + k w_1(y) = 0, \quad y \in [0, a] \]</p>
+    <p><strong>Boundary Conditions (BCs) at \( y = 0 \):</strong></p>
+    <p>\[ w_1(0) = 0, \quad w_1^{\prime}(0) = 0 \]</p>
+    <p><strong>Continuity Conditions (CCs) at \( y = a \):</strong></p>
+    <p>\[ w_1(a) = \frac{q}{k}, \quad w_1^{\prime}(a) = 0 \]</p>
+    
+    <h4>2. Loaded Interval \([a, L_y]\)</h4>
+    <p><strong>ODE:</strong></p>
+    <p>\[ q (L_y - a) = k (L_y - a) w_2 \]</p>
+    <p><strong>Solution:</strong></p>
+    <p>\[ w_2 = \frac{q}{k}, \quad y \in [a, L_y] \]</p>
+
+    <h2>4. HEWAN Model</h2>
+    
+    <p>Based on the basic HEW model, we add two corrective terms: one is Archard-Wear Law and the natural factor.  </p>
+
+    <h3>4.1 Archard-Wear Law – Material Erosion Over Time</h3>
+    <p>One important correction factor we need to consider is the frictional force on the contact area
+        that results in the loss of volume. We use the empirical relationship Archard-Wear to quantify
+        the volume of material removed due to wear. For simplicity, we assume the deflection and height lost are additive over region 2. </p>
+    <p>\[ \Delta V_{worn} = K \frac{(F_{fric} \cdot S)}{H} \]</p>
+    
+    <ul>
+        <li>\(K\) is the  Archard wear coefficient</li>
+        <li>\(H\) is the hardness of the tread material.</li>
+        <li>\(S\)  is the sliding distance during that single step.</li>
+    </ul>
+
+    <p>Incremental depth loss per step from Archard's relation :</p>
+    <p>\[ \Delta h = \left( \frac{K}{H \cdot A(l_c)} \right) \cdot (\mu q) \cdot S \]</p>
+
+    <h3>4.2. Natural Factor – Environmental Impact</h3>
+    
+    <p>We propose that the natural erosion of stair structures is influenced by multiple environmental factors, including time since construction, temperature fluctuations, humidity levels, and wind erosion along stair edges. The erosion model is given by:</p>
+    <p>
+        \[ A_{Natural}(y,t,H,T) = Stiffness Factor \times (\alpha t^{\beta} + \gamma e^{\delta H_t} + \eta |T - T_{ref}|) \times f(y) \]
+    </p>
+    <p>Where:</p>
+    <ul>
+        <li><strong>y</strong>: Coordinate along the analyzed axis</li>
+        <li><strong>t</strong>: Time (in years) since stair construction</li>
+        <li><strong>&alpha;, &beta;</strong>: Time coefficients of erosion</li>
+        <li><strong>H<sub>t</sub></strong>: Relative humidity</li>
+        <li><strong>T</strong>: Local temperature</li>
+        <li><strong>T<sub>ref</sub> = 20&deg;C</strong>: Reference temperature</li>
+    </ul>
+    <p>The erosion effect due to time, humidity, and temperature depends on the material’s stiffness, defined as:</p>
+    <p>
+        \[
+        Stiffness Factor =  \frac{1}{(1 + E_{material})} \times 10^{11}
+        \]
+    </p>
+    <p>where <strong>E<sub>material</sub></strong> represents Young’s modulus of the material. As stiffness increases, the erosion rate decreases.</p>
+    <h4>Wind-Induced Edge Erosion</h4>
+    <p>The effect of wind-induced edge erosion is modeled by:</p>
+    <p>
+        \[ f_e(y) = 1 + k \times (e^{-(y-1)/\sigma_y)^2} - 1 \]
+    </p>
+    <p>Where:</p>
+    <ul>
+        <li><strong>k</strong>: Controls intensity of wind erosion</li>
+        <li><strong>&sigma;<sub>y</sub></strong>: Determines material preservation at stair center</li>
+    </ul>
+    <p>As <strong>y</strong> increases (approaching the stair’s edge), <strong>f<sub>e</sub>(y)</strong> also increases, indicating greater erosion intensity near the edges due to wind and rain exposure. 
+        This is similiar to real situation since the edge of the stair is usually more smooth than the inner part. </p>
+
+
+    
+    <h3>4.3. Final Model</h3>
+    <p> A linear combination of Hybrid Eular-Bernoulli Winkler (HEW), Archard-Wear Law, and natural factors presents The final deflection HEWAN function \(W(y)\) of the extracted beam:</p>
+ 
+    <p>
+        \[ W_{HEWAN}(y) = \left\{ 
+            \begin{array}{ll} 
+            w_1(y) + A_{\text{natural}}(y, t, H, T), & 0 < y < a \\ 
+            w_2(y) + \Delta h + A_{\text{natural}}(y, t, H, T), & a < y < L_y 
+            \end{array} 
+            \right. \]
+    </p>
+
+    <p> Based on the simulation of HEWAN model, we are able to use backward analysis to trace back the information of stair, including: age of stair, material, pattern of use and so on. </p>
+
 
     <a href="projects.html">Back to Projects</a>
 </body>
