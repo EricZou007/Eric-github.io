@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Project 2 - SVD Lora Adaptater</title>
+    <title>Project 2 - SVD LoRA Adapter</title>
 
     <!-- MathJax for rendering LaTeX math -->
     <script type="text/javascript" async 
@@ -60,14 +60,14 @@
     </style>
 </head>
 <body>
-    <h1>Project 2 - SVD Lora Adapter</h1>
+    <h1><strong>Project 2 - SVD LoRA Adapter</strong></h1>
 
-    <p>This project was conducted as part of my role as a Research Assistant under Dr. Jie Chen at the MIT AI Watson Lab. My focus was on the efficient implementation of **Low-Rank Approximation (LoRA)** techniques using adapter methods.</p>
+    <p>This project was conducted as part of my role as a <strong>Research Assistant</strong> under <strong>Dr. Jie Chen</strong> at the <strong>MIT AI Watson Lab</strong>. My focus was on the efficient implementation of <strong>Low-Rank Approximation (LoRA)</strong> techniques using adapter methods.</p>
 
-    <p>My responsibilities included developing and optimizing algorithms to reduce computational complexity while maintaining accuracy, enabling faster data processing and improving machine learning model efficiency.</p>
+    <p>My responsibilities included developing and optimizing algorithms to <strong>reduce computational complexity</strong> while maintaining accuracy, enabling <strong>faster data processing</strong> and improving <strong>machine learning model efficiency</strong>.</p>
 
-    <h2>1. Original LoRA Method</h2>
-    <p>The original LoRA method reduces the total number of trainable parameters by decomposing the weight matrix into low-rank matrices. This is represented as:</p>
+    <h2><strong>1. Original LoRA Method</strong></h2>
+    <p>The original <strong>LoRA method</strong> reduces the total number of trainable parameters by decomposing the weight matrix into low-rank matrices. This is represented as:</p>
 
     <p>
         \[
@@ -75,19 +75,19 @@
         \]
     </p>
 
-    <p>where \( A \) and \( B \) are low-rank matrices. This transformation allows models to adapt to new tasks with minimal modifications to the original architecture, significantly reducing the number of parameters that need fine-tuning. As a result, LoRA enables efficient transfer learning and task adaptation.</p>
+    <p>where <strong>A</strong> and <strong>B</strong> are low-rank matrices. This transformation allows models to adapt to new tasks with minimal modifications to the original architecture, significantly reducing the number of parameters that need fine-tuning. As a result, <strong>LoRA</strong> enables <strong>efficient transfer learning</strong> and <strong>task adaptation</strong>.</p>
 
     <figure>
         <img src="images/Lora.png" alt="LoRA Architecture" style="width: 100%; height: auto;">
         <figcaption>
-            Figure 1: LoRA Architecture. Adapted from *Edward J., et al.*
+            <strong>Figure 1:</strong> LoRA Architecture. Adapted from <em>Edward J., et al.</em>
         </figcaption>
     </figure>
 
-    <p>By applying LoRA adapters to models, we can **reduce the number of trainable parameters** to as little as **1/1000 of the original model** (e.g., from **10 billion to 3 million** trainable parameters) while simultaneously **improving model performance**.</p>
+    <p>By applying <strong>LoRA adapters</strong> to models, we can <strong>reduce the number of trainable parameters</strong> to as little as <strong>1/1000 of the original model</strong> (e.g., from <strong>10 billion to 3 million</strong> trainable parameters) while simultaneously <strong>improving model performance</strong>.</p>
 
-    <h2>2. Our Method: SVD-LoRA Decomposition</h2>
-    <p>In our approach, we propose a novel decomposition of the weight matrix \( W \) into three components:</p>
+    <h2><strong>2. Our Method: SVD-LoRA Decomposition</strong></h2>
+    <p>In our approach, we propose a novel decomposition of the weight matrix <strong>W</strong> into three components:</p>
 
     <p>
         \[
@@ -97,9 +97,9 @@
 
     <p>where:</p>
     <ul>
-        <li>\( P \in \mathbb{R}^{d \times r} \) (low-rank projection matrix)</li>
-        <li>\( S \in \mathbb{R}^{r \times r} \) (small core matrix)</li>
-        <li>\( \Pi \in \mathbb{R}^{r \times d} \) (low-rank reconstruction matrix)</li>
+        <li><strong>P</strong> ∈ ℝ<sup>d × r</sup> (low-rank projection matrix)</li>
+        <li><strong>S</strong> ∈ ℝ<sup>r × r</sup> (small core matrix)</li>
+        <li><strong>Π</strong> ∈ ℝ<sup>r × d</sup> (low-rank reconstruction matrix)</li>
     </ul>
 
     <p>Here is the architecture of our method:</p>
@@ -107,34 +107,37 @@
     <figure>
         <img src="images/SVD_lora.png" alt="SVD_LoRA Architecture" style="width: 100%; height: auto;">
         <figcaption>
-            Figure 2: SVD-LoRA Architecture.
+            <strong>Figure 2:</strong> SVD-LoRA Architecture.
         </figcaption>
     </figure>
 
-    <h2>3. Underlying Principles</h2>
-    <p>Our idea is inspired by **Kronecker matrix product** and **multigrid methods**. The process involves:</p>
+    <h2><strong>3. Underlying Principles</strong></h2>
+    <p>Our idea is inspired by <strong>Kronecker matrix product</strong> and <strong>multigrid methods</strong>. The process involves:</p>
     <ol>
-        <li>Performing **balanced clustering** on the original weight matrix \( W \).</li>
-        <li>Assigning elements of \( W \) to corresponding clusters.</li>
+        <li>Performing <strong>balanced clustering</strong> on the original weight matrix <strong>W</strong>.</li>
+        <li>Assigning elements of <strong>W</strong> to corresponding clusters.</li>
         <li>Initializing:
             \[
             P = \mathcal{N}(0,1), \quad \Pi = \mathcal{N}(0, 1/k)
             \]
-            where \( k \) is the number of elements in each cluster, and
+            where <strong>k</strong> is the number of elements in each cluster, and
             \[
             S = 0.
             \]
         </li>
     </ol>
 
-    <h2>4. Training Strategy</h2>
-    <p>Unlike traditional LoRA, **we only allow \( S \) to be trainable while freezing \( P \) and \( \Pi \). This significantly reduces the number of trainable parameters while maintaining model performance.</p>
+    <h2><strong>4. Training Strategy</strong></h2>
+    <p>Unlike traditional <strong>LoRA</strong>, we only allow <strong>S</strong> to be trainable while freezing <strong>P</strong> and <strong>Π</strong>. This significantly reduces the number of trainable parameters while maintaining model performance.</p>
 
-    <p>For example, our method further reduces the trainable parameters from **3 million to 30 thousand, making it even more efficient for transfer learning** and **model adaptation tasks.</p>
+    <p>For example, our method further reduces the trainable parameters from <strong>3 million to 30 thousand</strong>, making it even more efficient for <strong>transfer learning</strong> and <strong>model adaptation tasks</strong>.</p>
 
-    <h2>Reference</h2>
-    <p>Hu, Edward J., et al. *"LoRA: Low-Rank Adaptation of Large Language Models."* 2021, arXiv, <a href="https://arxiv.org/abs/2106.09685" target="_blank">https://arxiv.org/abs/2106.09685</a>.</p>
+    <h2><strong>Reference</strong></h2>
+    <p>Hu, Edward J., et al. <em>"LoRA: Low-Rank Adaptation of Large Language Models."</em> 2021, arXiv, <a href="https://arxiv.org/abs/2106.09685" target="_blank">https://arxiv.org/abs/2106.09685</a>.</p>
 
-    <a href="projects.html">Back to Projects</a>
+    <div style="text-align: center;">
+        <a href="projects.html">Back to Projects</a>
+    </div>
+
 </body>
 </html>
