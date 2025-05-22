@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project 6 - Lipschitz-Regularized GAN Optimization</title>
+
+    <!-- MathJax for Rendering Math -->
+    <script type="text/javascript" async 
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
+    </script>
+
+    <style>
+        body {
+            font-family: system-ui, -apple-system, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            padding: 2rem;
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: #f9f9f9;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 1rem;
+            color: #333;
+        }
+
+        p {
+            margin: 1rem 0;
+        }
+
+        .equation {
+            background: #f4f4f4;
+            padding: 10px;
+            border-radius: 5px;
+            font-family: monospace;
+            overflow-x: auto;
+        }
+
+        a {
+            text-decoration: none;
+            color: #fff;
+            font-weight: 500;
+            display: inline-block;
+            margin-top: 1rem;
+            padding: 0.5rem 1rem;
+            background-color: #333;
+            border-radius: 5px;
+            text-align: center;
+        }
+
+        a:hover {
+            background-color: #555;
+        }
+    </style>
+</head>
+<body>
+    <h1>Project 6 - Lipschitz-Regularized GAN Optimization</h1>
+
+    <figure style="display: flex; justify-content: center; align-items: center; flex-direction: column; margin-top: 1rem;">
+        <img src="images/Generative_Model.png" alt="Project 1" style="width: 120%; max-width: 1000px; height: auto;">
+    </figure>
+
+    <div class="content">
+        <h2>Original Method</h2>
+
+        <p>
+            For Generative Adversarial Networks (GANs), we aim to learn a generator function 
+            \( g : Z \to X \), where \( z \sim P_Z \) is a random latent vector, and \( g(z) \sim P_g \)
+            represents generated data samples.
+        </p>
+
+        <p>
+            The discriminator function \( D : X \to \mathbb{R} \) maps input images to a scalar representing
+            the probability of being real. It is trained to distinguish between:
+        </p>
+
+        <ul>
+            <li>Real samples \( x \sim P_{\text{data}} \)</li>
+            <li>Fake samples \( g(z) \sim P_g \)</li>
+        </ul>
+
+        <p>The objective of the GAN is formulated as the following minimax problem:</p>
+
+        <p>
+            \[
+            \min_G \max_D \; \mathbb{E}_{x \sim P_{\text{data}}} [\log D(x)] + 
+            \mathbb{E}_{z \sim P_Z} [\log (1 - D(G(z)))]
+            \]
+        </p>
+
+        <p>This can be interpreted as:</p>
+
+        <ul>
+            <li><strong>Optimizing \( D \)</strong>: Maximize \( D(x) \approx 1 \) for real data and 
+                \( D(G(z)) \approx 0 \) for generated data</li>
+            <li><strong>Optimizing \( G \)</strong>: Make \( D(G(z)) \approx 1 \), i.e., fool the discriminator</li>
+        </ul>
+
+        <p>Then, we can compute the distribution \(D(x)\) by</p>
+
+        <p>
+            \[
+            D^*(x) = \arg\max_D \mathbb{E}_{x \sim P_{\text{data}}} [\log D(x)] + \mathbb{E}_{z \sim P_Z} [\log (1 - D(G(z)))]
+            \]
+        </p>
+        <P>
+            \[
+             D^*(x) = \frac{P_{\text{data}} (x) }{P_{\text{data}} (x) + P_G (x)}
+            \]
+        </P>
+
+        Plug in the optimial discriminator \(D^*(x)\) into the objective function, we have:
+        <p>
+            \[
+            \mathbb{E} [\log \frac{P_{\text{data}} (x) }{P_{\text{data}} (x) + P_G (x)}] +
+            \mathbb{E} [\log \frac{P_G (x)}{P_{\text{data}} (x) + P_G (x)}] = 2\text{JSD}(P_{\text{data} \mid \mid P_G}) - \log(4)
+            \]
+        </p>
+
+        <p>Where \( \text{JSD} \) is the Jensen-Shannon Divergence. Therefore the loss objective function become</p>
+
+        <p>
+            \[
+            \min_G \max_D \; \mathbb{E}_{x \sim P_{\text{data}}} [\log D(x)] + \mathbb{E}_{z \sim P_Z} [\log (1 - D(G(z)))] \sim
+            \min_G \text{JSD}(P_{\text{data}} \mid \mid P_G) 
+            \]
+        </p>
+
+        <p> GAN is training a generator G to minimize the distance between \(P_{\text{data}}\) and \(P_G\)</p>
+
+
+        <h2>&chi;<sup>2</sup> and WGAN </h2>
+
+        For &chi;<sup>2</sup> GAN, we use different divergence metric to evaluate the distance between the generator and discriminator distirbution:
+
+        <p>
+            \[
+                \chi^2 (P \mid \mid Q) = \int f(\frac{p(x)}{q(x)} q(x)) dx = 
+                \max_{T:X \to \mathbb{R}} \mathbb{E}_{x \sim P} [T(x)] - \mathbb{E}_{x \sim Q} [f^*(T(x))]
+            \]
+        </p>
+
+        <p>Where \(f^*(x)\) is the Fenchel conjugate of \(f\). </p>
+
+        <p>For WGAN, we use Wasserstein distance to measure the distance between the generator and discriminator distirbution:</p>
+
+        <p>
+            \[
+                W(P, Q) = \sup_{T \in Lip_1} \mathbb{E}_{x \sim P} [T(x)] - \mathbb{E}_{x \sim Q} [T(x)]
+            \]
+        </p>
+
+        Where: 
+
+        <p>
+            \[
+                Lip_1 = \{T: X \to \mathbb{R} \mid \|\nabla T\| \le 1\}
+            \]
+        </p>
+
+        Then the loss object function become:
+
+        <p>
+            \[
+                \min_G W(P_{\text{data}}, P_G) = \min_G \max_T \mathbb{E}_{x \sim P_{\text{data}}} [T(x)] - \mathbb{E}_{z \sim P_Z} [T(G(z))]
+            \]
+        </p>
+
+        <h2>Our Method </h2>
+
+        <p>We try to combine the above mentioned two method. We interpret the constraint \( \|\nabla T\| \le 1 \) as a domain restriction over the function class \(T\).
+            Then we apply this constrain to the orginal &chi;<sup>2</sup> GAN. Which can be written in this explicit form: 
+        </p>
+
+        <p>
+            \[
+            \min_{G} \max_{T \in \text{Lip}_1(\mathcal{X})} 
+            \mathbb{E}_{x \sim P_{\text{data}}} [T(x)] - 
+            \mathbb{E}_{z \sim P_Z} \left[ \frac{T(G(z))^2}{4} + T(G(z)) \right]
+            \]
+        </p>
+
+        <h2>KKT Interpretation</h2>
+        <p>We can view this as an optimization problem under constraint, where a Lagrange multiplier term is added via the KKT framework:</p>
+        <p>
+            \[
+            \min_G \max_T \; 
+            \mathbb{E}_{x \sim P_{\text{data}}} [T(x)]
+            - \mathbb{E}_{z \sim P_Z} \left[ \frac{T(G(z))^2}{4} + T(G(z)) \right]
+            - \lambda_{\text{gp}} \, \mathbb{E}_{\hat{x} \sim \mathbb{P}_{\text{interp}}} 
+            \left[ \left( \left\| \nabla_{\hat{x}} T(\hat{x}) \right\|_2 - 1 \right)^2 \right]
+            \]
+        </p>
+        <p>Here, \( \hat{x} \sim \mathbb{P}_{\text{interp}} \) are points interpolated between real and generated samples, and \( \lambda_{\text{gp}} \) controls the strength of the Lipschitz penalty. Here is the result:</p>
+
+        <figure>
+            <img src="images/GAN_metrics.png" alt="Foot placement on stair">
+        </figure>
+
+        We observe that our method outperforms the original GAN and &chi;<sup>2</sup> GAN on dataset MINST in metrics of interception score. 
+
+        <h2>Conclusion</h2>
+        <p>This formulation provides a principled way to enforce 1-Lipschitz constraints while optimizing the generator and discriminator jointly in adversarial learning frameworks.</p>
+    </div>
+
+    <a href="projects.html">Back to Projects</a>
+</body>
+</html>
