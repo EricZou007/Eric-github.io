@@ -15,14 +15,41 @@
             margin: 0 auto;
             background-color: #f5f7fa;
         }
-
+        /* Center navigation bar */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background-color: rgba(255,255,255,0.9);
+            padding: 1rem;
+            z-index: 100;
+            text-align: center;
+        }
+        nav ul {
+            display: inline-flex;
+            gap: 1.5rem;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+        nav a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        nav a:hover {
+            color: #007BFF;
+        }
+        /* Page title */
         h1 {
             text-align: center;
-            margin-bottom: 1.5rem;
+            margin: 4rem 0 1.5rem; /* extra top margin to clear fixed nav */
             font-size: 2rem;
             color: #222;
         }
-
+        /* Section headings */
         h2 {
             text-align: left;
             margin-bottom: 1rem;
@@ -31,32 +58,31 @@
             border-bottom: 2px solid #007BFF;
             padding-bottom: 0.5rem;
         }
-
+        /* Section container */
         section {
             margin-bottom: 2rem;
             padding: 1.5rem;
             background: #fff;
             border-radius: 10px;
             box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
-        }
-
-        .edu-details, .courses-list, .skills-list {
             text-align: left;
         }
-
+        /* Content details */
+        .edu-details, .courses-list, .skills-list {
+            text-align: left;
+            margin: 0;
+        }
         .edu-details p, .courses-list p, .skills-list p {
             margin: 0.5rem 0;
         }
-
         .courses-list, .skills-list {
             margin-top: 1rem;
         }
-
         ul {
             padding-left: 1.5rem;
             list-style: disc;
+            text-align: left;
         }
-
         /* Skills Section */
         .skills-list ul {
             display: flex;
@@ -64,8 +90,8 @@
             gap: 10px;
             list-style: none;
             padding-left: 0;
+            justify-content: flex-start;
         }
-
         .skills-list li {
             background: #007BFF;
             color: white;
@@ -74,37 +100,29 @@
             font-size: 0.95rem;
             font-weight: 500;
         }
-
-        /* Back to Home Button */
-        .back-home {
-            display: block;
-            text-align: center;
-            text-decoration: none;
-            color: white;
-            font-weight: 600;
-            margin-top: 2rem;
-            padding: 0.7rem 1.5rem;
-            background-color: #007BFF;
-            border-radius: 5px;
-            width: fit-content;
-            margin-left: auto;
-            margin-right: auto;
-            transition: background 0.3s ease-in-out;
-        }
-
-        .back-home:hover {
-            background-color: #0056b3;
-        }
-
         /* Responsive Design */
         @media (max-width: 768px) {
             body {
                 padding: 1.5rem;
             }
+            h1 {
+                margin-top: 5rem;
+            }
         }
     </style>
 </head>
 <body>
+    <nav>
+        <ul>
+            <li><a href="index.html#home">Home</a></li>
+            <li><a href="index.html#about">About</a></li>
+            <li><a href="projects.html">Projects</a></li>
+            <li><a href="education.html">Education Experience</a></li>
+            <li><a href="index.html#contact">Contact</a></li>
+            <li><a href="publications.html">Publications</a></li>
+        </ul>
+    </nav>
+
     <h1>Education Experience</h1>
     
     <section>
@@ -122,13 +140,13 @@
             <ul>
                 <li>Real Analysis</li>
                 <li>Complex Analysis</li>
-                <li>Functional Analysis</li>
                 <li>Probability and Statistics Theory</li>
                 <li>Numerical Analysis</li>
                 <li>Numerical Linear Algebra</li>
                 <li>Numerical PDE</li>
+                <li>Iterative Methods</li>
+                <li>Numerical Optimization</li>
                 <li>Machine Learning, Deep Learning, Reinforcement Learning</li>
-                <li>Optimization</li>
                 <li>Partial Differential Equations (PDE)</li>
                 <li>Mathematical Modeling</li>
             </ul>
@@ -160,7 +178,5 @@
         </div>
     </section>
 
-    <a href="./index.html" class="back-home">Back to Home</a>
 </body>
 </html>
-
