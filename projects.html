@@ -1,168 +1,174 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Projects - Eric Zou</title>
-    <style>
-        /* Global Styling */
-        body {
-            font-family: system-ui, -apple-system, sans-serif;
-            line-height: 1.6;
-            color: #333;
-            padding: 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
-            background-color: #f9f9f9;
-        }
-        /* Center navigation bar */
-        nav {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            background-color: rgba(255,255,255,0.9);
-            padding: 1rem;
-            z-index: 100;
-            text-align: center;
-        }
-        nav ul {
-            display: inline-flex;
-            gap: 1.5rem;
-            list-style: none;
-            margin: 0;
-            padding: 0;
-        }
-        nav a {
-            text-decoration: none;
-            color: #333;
-            font-weight: 500;
-            transition: color 0.3s;
-        }
-        nav a:hover {
-            color: #007BFF;
-        }
-        /* Page title */
-        h1 {
-            text-align: center;
-            margin: 4rem 0 2rem; /* extra top margin to clear fixed nav */
-            color: #222;
-        }
-        /* Grid layout for project cards */
-        .project-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-        .project-card {
-            background: white;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
-            text-align: left;
-        }
-        .project-card img {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-        }
-        .project-content {
-            padding: 1.5rem;
-        }
-        .project-content h3 {
-            margin: 0 0 0.5rem;
-            color: #007BFF;
-        }
-        .project-content p {
-            margin: 0 0 1rem;
-        }
-        .project-content a {
-            text-decoration: none;
-            color: white;
-            background-color: #007BFF;
-            padding: 0.5rem;
-            border-radius: 5px;
-            display: inline-block;
-            font-weight: 500;
-        }
-        .project-content a:hover {
-            background-color: #0056b3;
-        }
-        /* Responsive adjustments */
-        @media (max-width: 768px) {
-            body { padding: 1rem; }
-            h1 { margin-top: 5rem; }
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Projects – Eric Zou</title>
+  <style>
+    /* Global Styling */
+    body {
+      font-family: system-ui, -apple-system, sans-serif;
+      line-height: 1.6;
+      color: #001F3F;              /* navy text */
+      padding: 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+      background-color: #f9f9f9;
+    }
+
+    /* Center navigation bar */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      background-color: #001F3F;
+      padding: 1rem;
+      z-index: 100;
+      text-align: center;
+    }
+    nav ul {
+      display: inline-flex;
+      gap: 2rem;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+    nav a {
+      text-decoration: none;
+      color: #ffffff;              /* navy links */
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+    nav a:hover {
+      color: #004170;              /* darker navy on hover */
+    }
+
+    /* Page title */
+    h1 {
+      text-align: center;
+      margin: 4rem 0 2rem;         /* clear the fixed nav */
+      color: #001F3F;              /* navy */
+    }
+
+    /* Grid layout for project cards */
+    .project-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+    }
+    .project-card {
+      background: white;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+      text-align: left;
+    }
+    .project-card img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+    .project-content {
+      padding: 1.5rem;
+    }
+    .project-content h3 {
+      margin: 0 0 0.5rem;
+      color: #001F3F;              /* navy headings */
+    }
+    .project-content p {
+      margin: 0 0 1rem;
+      color: #001F3F;              /* navy text */
+    }
+    .project-content a {
+      text-decoration: none;
+      color: white;
+      background-color: #001F3F;   /* navy button */
+      padding: 0.5rem;
+      border-radius: 5px;
+      display: inline-block;
+      font-weight: 500;
+      transition: background-color 0.3s;
+    }
+    .project-content a:hover {
+      background-color: #003049;   /* darker navy */
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+      body { padding: 1rem; }
+      h1 { margin-top: 5rem; }
+    }
+  </style>
 </head>
 <body>
-    <nav>
-        <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="Resume.html">Resume</a></li>
-        <li><a href="education.html">Education Experience</a></li>
-        <li><a href="projects.html">Projects</a></li>
-        <li><a href="publications.html">Publications</a></li>
-        </ul>
-    </nav>
 
-    <h1>My Projects</h1>
+  <nav>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="Resume.html">Resume</a></li>
+      <li><a href="education.html">Education Experience</a></li>
+      <li><a href="projects.html">Projects</a></li>
+      <li><a href="publications.html">Publications</a></li>
+    </ul>
+  </nav>
 
-    <div class="project-grid">
-        <div class="project-card">
-            <img src="images/IMG_1467.png" alt="Project 1">
-            <div class="project-content">
-                <h3>Project 1 - Xi's Lab REU</h3>
-                <p>Research assistant at Xi's Lab, focused on Multimodal Image Reconstruction.</p>
-                <a href="project1.html">Learn More</a>
-            </div>
-        </div>
+  <h1>My Projects</h1>
 
-        <div class="project-card">
-            <img src="images/Unknown.png" alt="Project 2">
-            <div class="project-content">
-                <h3>Project 2 - MIT AI Watson Lab Assistant</h3>
-                <p>Research Assistant under Dr. Jie Chen, focused on efficient implementation of LORA.</p>
-                <a href="project2.html">Learn More</a>
-            </div>
-        </div>
-
-        <div class="project-card">
-            <img src="images/AIX.png" alt="Project 3">
-            <div class="project-content">
-                <h3>Project 3 - AI.X Research on Graphical Database</h3>
-                <p>Improving Prompting Efficiency Using Graphical Database.</p>
-                <a href="project3.html">Learn More</a>
-            </div>
-        </div>
-
-        <div class="project-card">
-            <img src="images/Award.png" alt="Project 4">
-            <div class="project-content">
-                <h3>Project 4 - MCM Competition</h3>
-                <p>Developed a model analyzing stair wear over time for the Mathematical Contest in Modeling.</p>
-                <a href="project4.html">Learn More</a>
-            </div>
-        </div>
-
-        <div class="project-card">
-            <img src="images/datafest.png" alt="Project 5">
-            <div class="project-content">
-                <h3>Project 5 - DataFest Competition</h3>
-                <p>Analyzed educational engagement on CourseKata, enhancing learning efficiency.</p>
-                <a href="project5.html">Learn More</a>
-            </div>
-        </div>
-
-        <div class="project-card">
-            <img src="images/bootcamp.png" alt="Project 6">
-            <div class="project-content">
-                <h3>Project 6 - Atlanta Mathematics of Data Science Bootcamp</h3>
-                <p>Explored combination of χ²-GAN and WGAN architectures.</p>
-                <a href="project6.html">Learn More</a>
-            </div>
-        </div>
+  <div class="project-grid">
+    <div class="project-card">
+      <img src="images/IMG_1467.png" alt="Project 1">
+      <div class="project-content">
+        <h3>Project 1 – Xi’s Lab REU</h3>
+        <p>Research assistant at Xi’s Lab, focused on Multimodal Image Reconstruction.</p>
+        <a href="project1.html">Learn More</a>
+      </div>
     </div>
+
+    <div class="project-card">
+      <img src="images/Unknown.png" alt="Project 2">
+      <div class="project-content">
+        <h3>Project 2 – MIT AI Watson Lab Assistant</h3>
+        <p>Research Assistant under Dr. Jie Chen, focused on efficient implementation of LoRA.</p>
+        <a href="project2.html">Learn More</a>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <img src="images/AIX.png" alt="Project 3">
+      <div class="project-content">
+        <h3>Project 3 – AI.X Research</h3>
+        <p>Improving prompting efficiency using a graphical database.</p>
+        <a href="project3.html">Learn More</a>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <img src="images/Award.png" alt="Project 4">
+      <div class="project-content">
+        <h3>Project 4 – MCM Competition</h3>
+        <p>Developed a model analyzing stair wear over time for the Mathematical Contest in Modeling.</p>
+        <a href="project4.html">Learn More</a>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <img src="images/datafest.png" alt="Project 5">
+      <div class="project-content">
+        <h3>Project 5 – DataFest Competition</h3>
+        <p>Analyzed educational engagement on CourseKata, enhancing learning efficiency.</p>
+        <a href="project5.html">Learn More</a>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <img src="images/bootcamp.png" alt="Project 6">
+      <div class="project-content">
+        <h3>Project 6 – Atlanta Mathematics of Data Science Bootcamp</h3>
+        <p>Explored a χ²-GAN + WGAN hybrid architecture.</p>
+        <a href="project6.html">Learn More</a>
+      </div>
+    </div>
+  </div>
+
 </body>
 </html>
 
