@@ -1,0 +1,100 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>Eric Zou — Resume</title>
+
+  <!-- Font Awesome (for the PDF icon) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js" defer></script>
+
+  <style>
+    /* Basic reset & typography */
+    * { margin:0; padding:0; box-sizing:border-box; font-family: system-ui, sans-serif }
+    body { background: #fafafa; color: #333; line-height:1.6; }
+
+    /* Nav, same as index */
+    nav {
+      position: sticky; top: 0;
+      background: #fff; border-bottom:1px solid #eee;
+      padding: 1rem 2rem; z-index: 100;
+    }
+    nav ul { list-style:none; display:flex; gap:2rem; justify-content:center; }
+    nav a {
+      text-decoration: none;
+      color: #333;
+      font-weight: 500;
+      transition: color .3s;
+    }
+    nav a:hover { color: #007BFF; }
+
+    /* Page header */
+    header {
+      text-align: center;
+      padding: 2rem 1rem 1rem;
+    }
+    header h1 {
+      font-size: 2.5rem;
+      margin-bottom: .5rem;
+    }
+    header p {
+      color: #555;
+      font-size: 1rem;
+    }
+
+    /* PDF embed container */
+    .pdf-container {
+      width: 100%;
+      max-width: 1200px;    /* ← wider than before */
+      margin: 2rem auto;
+      height: 100vh;
+      border: 1px solid #ddd;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    .pdf-container embed {
+      width: 100%;
+      height: 100%;
+    }
+    .pdf-container embed {
+      width: 100%; height: 100%;
+    }
+
+    /* Footer / back link */
+    footer {
+      text-align: center;
+      margin: 2rem 0;
+    }
+    footer a {
+      text-decoration: none;
+      color: #007BFF;
+      font-weight: 500;
+    }
+    footer a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="Resume.html">Resume</a></li>
+        <li><a href="education.html">Education Experience</a></li>
+        <li><a href="projects.html">Projects</a></li>
+        <li><a href="publications.html">Publications</a></li>
+    </ul>
+  </nav>
+
+  <header>
+    <h1>My Resume</h1>
+    <p>Click to view my full resume below.</p>
+  </header>
+
+  <div class="pdf-container">
+    <embed src="Resume.pdf" type="application/pdf">
+  </div>
+
+
+
+</body>
+</html>

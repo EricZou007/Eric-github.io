@@ -1,205 +1,198 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Eric Zou's Personal Website</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Chengru (Eric) Zou | Emory University</title>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+  <!-- Font Awesome for icons -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js" defer></script>
 
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: system-ui, -apple-system, sans-serif;
-            scroll-behavior: smooth;
-        }
+  <style>
+    /* Reset & base */
+    * { margin:0; padding:0; box-sizing:border-box; font-family: system-ui, sans-serif }
+    body { color:#333; background:#fafafa; line-height:1.6 }
+    a { color:inherit; text-decoration:none }
 
-        body {
-            line-height: 1.6;
-            color: #333;
-        }
+    /* NAV */
+    nav {
+      position:sticky; top:0; background:#fff;
+      border-bottom:1px solid #eee;
+      padding:1rem 2rem;
+      z-index:100;
+    }
+    nav ul { list-style:none; display:flex; gap:2rem; justify-content:center }
+    nav a:hover { color:#007BFF }
 
-        .header {
-            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), 
-                        url('https://www.coopercarry.com/wp-content/uploads/2018/06/Emory-Univ-Math-_-Science-1-1024x512.jpg');
-            background-size: cover;
-            background-position: center;
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            color: white;
-            padding: 2rem;
-        }
+    /* LAYOUT */
+    .layout {
+      display:grid;
+      grid-template-columns: 2fr 1fr;
+      gap:2rem;
+      max-width:1000px;
+      margin:2rem auto;
+      padding:0 1rem;
+    }
+    @media(max-width:800px) {
+      .layout { grid-template-columns:1fr }
+      .sidebar { display:none }  /* hide portrait on mobile if you like */
+    }
 
-        .header h1 {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-        }
+    /* CONTENT COLUMN */
+    .content h1 {
+      font-size:2.5rem;
+      margin-bottom:0.25rem;
+    }
+    .content .chinese-name {
+      font-size:1.1rem;
+      color:#666;
+      margin-bottom:1rem;
+    }
+    .social-buttons {
+      display:flex; gap:1rem; margin-bottom:1.5rem;
+    }
+    .social-buttons a {
+      display:flex; align-items:center; gap:0.5rem;
+      padding:0.4rem 0.8rem;
+      border:1px solid #333;
+      border-radius:4px;
+      font-size:0.9rem;
+      transition:background .2s, color .2s;
+    }
+    .social-buttons a:hover {
+      background:#007BFF; color:white; border-color:transparent;
+    }
+    .intro {
+      margin-bottom:2rem;
+      max-width:600px;
+    }
 
-        .header p {
-            font-size: 1.5rem;
-            max-width: 600px;
-        }
+    /* SECTIONS */
+    section {
+      margin-bottom:2rem;
+    }
+    section h2 {
+      font-size:1.5rem;
+      margin-bottom:0.75rem;
+      border-bottom:2px solid #eee;
+      padding-bottom:0.25rem;
+    }
+    .section-item + .section-item {
+      margin-top:1rem;
+    }
+    .section-item h3 {
+      font-size:1.05rem;
+      font-weight:600;
+      margin-bottom:0.25rem;
+    }
+    .section-item p {
+      color:#555;
+      font-size:0.95rem;
+      line-height:1.4;
+    }
 
-        nav {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            background-color: rgba(255,255,255,0.9);
-            padding: 1rem;
-            z-index: 100;
-        }
-
-        nav ul {
-            display: flex;
-            justify-content: center;
-            list-style: none;
-            gap: 2rem;
-        }
-
-        nav a {
-            text-decoration: none;
-            color: #333;
-            font-weight: 500;
-            transition: color 0.3s ease-in-out;
-        }
-
-        nav a:hover {
-            color: #007BFF;
-        }
-
-        section {
-            padding: 5rem 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .about {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 2rem;
-            align-items: center;
-        }
-
-        .about img {
-            width: 100%;
-            border-radius: 10px;
-        }
-
-        .contact-form {
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        .contact-form input,
-        .contact-form textarea {
-            width: 100%;
-            padding: 0.8rem;
-            margin-bottom: 1rem;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-        }
-
-        .contact-form button {
-            background-color: #333;
-            color: white;
-            padding: 0.8rem 2rem;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-
-        .social-links {
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
-            margin-top: 2rem;
-        }
-
-        .social-links a {
-            color: #333;
-            font-size: 1.5rem;
-            transition: color 0.3s ease-in-out;
-        }
-
-        .social-links a:hover {
-            color: #007BFF;
-        }
-
-        @media (max-width: 768px) {
-            .about {
-                grid-template-columns: 1fr;
-            }
-
-            .header h1 {
-                font-size: 2rem;
-            }
-
-            .header p {
-                font-size: 1.2rem;
-            }
-        }
-    </style>
+    /* SIDEBAR */
+    .sidebar {
+      position:sticky; top:2rem;
+      text-align:center;
+    }
+    .sidebar img {
+      width:200px; height:200px;
+      border-radius:50%;
+      object-fit:cover;
+      border:4px solid #fff;
+      box-shadow:0 2px 12px rgba(0,0,0,0.1);
+    }
+  </style>
 </head>
 <body>
 
-    <nav>
-        <ul>
-            <li><a href="#home">Home</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="projects.html">Projects</a></li>
-            <li><a href="education.html">Education Experience</a></li>
-            <li><a href="#contact">Contact</a></li>
-            <li><a href= "publications.html">Publications</a></li>
+  <nav>
+    <ul>
+      <li><a href="#home">Home</a></li>
+      <li><a href="Resume.html">Resume</a></li>
+      <li><a href="education.html">Education Experience</a></li>
+      <li><a href="projects.html">Projects</a></li>
+      <li><a href="publications.html">Publications</a></li>
+    </ul>
+  </nav>
+
+  <div class="layout">
+    <!-- left / main content -->
+    <div class="content" id="home">
+    <h1>Chengru (Eric) Zou</h1>
+    <div class="chinese-name">邹承儒</div>
+
+
+      <div class="social-buttons">
+        <a href="https://linkedin.com/in/chengru-zou-110b8a292" target="_blank">
+          <i class="fab fa-linkedin"></i> LinkedIn
+        </a>
+        <a href="https://github.com/EricZou007" target="_blank">
+          <i class="fab fa-github"></i> GitHub
+        </a>
+        <a href="mailto:eric.zou@emory.edu">
+          <i class="fas fa-envelope"></i> Email
+        </a>
+      </div>
+
+      <p class="intro">
+        Hi! I’m Chengru, a senior at Emory University majoring in Applied Mathematics &amp; Statistics. My research focuses on multimodal learning in ptychography &amp; fluorescence reconstruction, and I assist on low‑rank decomposition at the MIT AI Watson Lab. In my free time, I love to listen to music and work out. 
+      </p>
+
+      <!-- Education -->
+      <section id="education">
+        <h2>Education</h2>
+        <div class="section-item">
+          <h3>B.S. in Applied Mathematics &amp; Statistics</h3>
+          <p>Emory University (2022 – 2026), Atlanta, GA</p>
+        </div>
+      </section>
+
+      <section id="research-interests">
+        <h2>Research Interests</h2>
+        <ul class="section-list">
+            <li class="section-item">
+            Scientific Computing (e.g., PINN, DeepONet)
+            </li>
+            <li class="section-item">
+            Inverse Problems (e.g., image Reconstruction, signal Processing)
+            </li>
+            <li class="section-item">
+            Efficient training algorithms (e.g., optimization, numerical analysis)
+            </li>
+            <li class="section-item">
+            AI Learning Theory (e.g., generalization, robustness)
+            </li>
         </ul>
-    </nav>
+      </section>
 
-    <header id="home" class="header">
-        <h1>Chengru (Eric) Zou</h1>
-        <p>Emory University | Math Researcher</p>
-    </header>
-
-    <section id="about" class="about">
-        <img src="images/mypic.png" alt="Profile Picture">
-        <div>
-            <h2>About Me</h2>
-            <p>Hi there! I am currently a Senior at Emory University majoring in Applied Math and Statistics. My research area is Multimodal Learning in Ptychography and Fluorescence Reconstruction and Inverse problem optimization. 
-                I also work as a research assistant in MIT AI Watson Lab, focusing on Low Rank Decomposition. I am looking forward to diving further into the field of artificial intelligence with professionals.</p>
+ 
+      <section id="Research Experience">
+        <h2>Research Experience</h2>
+        <div class="section-item">
+          <h3>Joint Ptychography &amp; Fluorescence Reconstruction</h3>
+          <p>@ Emory University Math Department & Argonne National Lab</p>
         </div>
-    </section>
-
-    <section id="contact">
-        <h2>Get in Touch</h2>
-        <form class="contact-form" action="mailto:eric.zou@emory.edu" method="post" enctype="text/plain">
-            <input type="text" name="name" placeholder="Name" required>
-            <input type="email" name="email" placeholder="Email" required>
-            <textarea name="message" placeholder="Your Message" rows="5" required></textarea>
-            <button type="submit">Send Message</button>
-        </form>
-        <div class="social-links">
-            <a href="https://github.com/EricZou007" target="_blank"><i class="fab fa-github"></i></a>
-            <a href="https://linkedin.com/in/chengru-zou-110b8a292" target="_blank"><i class="fab fa-linkedin"></i></a>
+        <div class="section-item">
+          <h3>Low‐Rank Decomposition Adapters</h3>
+          <p>@ MIT AI Watson Lab</p>
         </div>
-    </section>
+         <div class="section-item">
+          <h3>AI Chatbot Development</h3>
+          <p>@ Emory Center for AI Learning </p>
+        </div>
+      </section>
 
-    <script>
-        document.querySelectorAll('nav a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener("click", function(event) {
-                event.preventDefault();
-                const targetID = this.getAttribute("href").substring(1);
-                const targetSection = document.getElementById(targetID);
-                window.scrollTo({
-                    top: targetSection.offsetTop - 50, // Adjust offset if needed
-                    behavior: "smooth"
-                });
-            });
-        });
-    </script>
+      
+
+    </div>
+
+    <!-- right / sticky portrait -->
+    <div class="sidebar">
+      <img src="images/mypic.png" alt="Eric Zou">
+    </div>
+  </div>
 
 </body>
 </html>
