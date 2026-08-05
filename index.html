@@ -14,7 +14,7 @@
 
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Chengru (Eric) Zou | Emory University</title>
+  <title>Chengru (Eric) Zou | UT Austin Oden Institute</title>
 
   <!-- Font Awesome for icons -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js" defer></script>
@@ -29,7 +29,7 @@
     nav {
       position:sticky;
       top:0;
-      background: #001F3F;            /* navy blue */
+      background: #001F3F;
       padding:1rem 2rem;
       z-index:100;
     }
@@ -40,12 +40,12 @@
       justify-content:center;
     }
     nav a {
-      color: #ffffff;                 /* white links */
+      color: #ffffff;
       font-weight:500;
       transition: color .2s;
     }
     nav a:hover {
-      color: #DDDDDD;                 /* light grey on hover */
+      color: #DDDDDD;
     }
 
     /* LAYOUT */
@@ -73,29 +73,29 @@
       margin-bottom:1rem;
     }
     .social-buttons {
-    display: flex;
-    gap: 1rem;
-    margin-bottom: 1.5rem;
-  }
-  .social-buttons a {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    padding: 0.4rem 0.8rem;
-    border: 1px solid #333;
-    border-radius: 4px;
-    font-size: 0.9rem;
-    color: #333;
-    transition: background .2s, color .2s;
-  }
-  .social-buttons a i {
-    color: inherit;
-  }
-  .social-buttons a:hover {
-    background: #007BFF;
-    color: #fff;
-    border-color: transparent;
-  }
+      display:flex;
+      gap:1rem;
+      margin-bottom:1.5rem;
+    }
+    .social-buttons a {
+      display:flex;
+      align-items:center;
+      gap:0.5rem;
+      padding:0.4rem 0.8rem;
+      border:1px solid #333;
+      border-radius:4px;
+      font-size:0.9rem;
+      color:#333;
+      transition:background .2s, color .2s;
+    }
+    .social-buttons a i {
+      color:inherit;
+    }
+    .social-buttons a:hover {
+      background:#007BFF;
+      color:#fff;
+      border-color:transparent;
+    }
     .intro {
       margin-bottom:2rem;
       max-width:600px;
@@ -127,11 +127,13 @@
 
     /* SIDEBAR */
     .sidebar {
-      position:sticky; top:2rem;
+      position:sticky;
+      top:2rem;
       text-align:center;
     }
     .sidebar img {
-      width:200px; height:200px;
+      width:200px;
+      height:200px;
       border-radius:50%;
       object-fit:cover;
       border:4px solid #fff;
@@ -152,7 +154,6 @@
   </nav>
 
   <div class="layout">
-    <!-- left / main content -->
     <div class="content" id="home">
       <h1>Chengru (Eric) Zou</h1>
       <div class="chinese-name">邹承儒</div>
@@ -160,6 +161,9 @@
       <div class="social-buttons">
         <a href="https://linkedin.com/in/chengru-zou-110b8a292" target="_blank">
           <i class="fab fa-linkedin"></i> LinkedIn
+        </a>
+        <a href="https://scholar.google.com/citations?user=GuRZtoYAAAAJ&hl=en" target="_blank">
+          <i class="fas fa-graduation-cap"></i> Google Scholar
         </a>
         <a href="https://github.com/EricZou007" target="_blank">
           <i class="fab fa-github"></i> GitHub
@@ -170,19 +174,21 @@
       </div>
 
       <p class="intro">
-        Hi! I’m a senior at Emory University majoring in Applied Mathematics  Statistics. My current research focuses on multimodal ptychography and fluorescence reconstruction, and I assist on developing efficient training algorithms at the MIT AI Watson Lab. In my free time, I love to listen to music and work out.
+        Hi! I am an incoming Ph.D. student at the Oden Institute for Computational Engineering and Sciences at The University of Texas at Austin in the CSEM Ph.D. program. I recently completed my B.S. in Applied Mathematics &amp; Statistics at Emory University. My research interests include scientific machine learning, inverse problems, and efficient training algorithms. In my free time, I enjoy listening to music and working out.
       </p>
 
-      <!-- Education -->
       <section id="education">
         <h2>Education</h2>
         <div class="section-item">
+          <h3>Ph.D. in Computational Science, Engineering, and Mathematics (CSEM)</h3>
+          <p>The University of Texas at Austin, Oden Institute, Austin, TX</p>
+        </div>
+        <div class="section-item">
           <h3>B.S. in Applied Mathematics &amp; Statistics</h3>
-          <p>Emory University (2022 – 2026), Atlanta, GA</p>
+          <p>Emory University, Atlanta, GA</p>
         </div>
       </section>
 
-      <!-- Research Interests -->
       <section id="research-interests">
         <h2>Research Interests</h2>
         <ul class="section-list">
@@ -192,25 +198,8 @@
         </ul>
       </section>
 
-      <!-- Research Experience -->
-      <section id="research-experience">
-        <h2>Research Experience</h2>
-        <div class="section-item">
-          <h3>Joint Ptychography &amp; Fluorescence Reconstruction</h3>
-          <p>@ Emory University Math Department &amp; Argonne National Lab</p>
-        </div>
-        <div class="section-item">
-          <h3>Low‑Rank Decomposition Adapters</h3>
-          <p>@ MIT-IBM Watson AI Lab</p>
-        </div>
-        <div class="section-item">
-          <h3>AI Chatbot Development</h3>
-          <p>@ Emory Center for AI Learning</p>
-        </div>
-      </section>
     </div>
 
-    <!-- right / sticky portrait -->
     <div class="sidebar">
       <img src="images/mypic.png" alt="Eric Zou">
     </div>
